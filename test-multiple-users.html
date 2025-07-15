@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-User Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .user-window {
+            width: 600px;
+            height: 400px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background: white;
+            position: relative;
+        }
+        .user-window h3 {
+            margin: 0;
+            padding: 10px;
+            background: #333;
+            color: white;
+            text-align: center;
+        }
+        .user-window iframe {
+            width: 100%;
+            height: calc(100% - 50px);
+            border: none;
+        }
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .instructions h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .instructions ol {
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h2>Testing Anonymous Video Chat with Multiple Users</h2>
+        <ol>
+            <li>Open this page in a separate browser or incognito window</li>
+            <li>Grant camera/microphone permissions in both windows</li>
+            <li>Click "Next" in both windows to start partner matching</li>
+            <li>Test video chat, text messaging, and "End Chat" functionality</li>
+            <li>Use "Next" to find new partners and test reconnection</li>
+        </ol>
+        <p><strong>Note:</strong> Each window below represents a separate user session.</p>
+    </div>
+
+    <div class="container">
+        <div class="user-window">
+            <h3>User 1</h3>
+            <iframe src="/" title="User 1 Video Chat"></iframe>
+        </div>
+        
+        <div class="user-window">
+            <h3>User 2</h3>
+            <iframe src="/" title="User 2 Video Chat"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Add some helpful debugging
+        window.addEventListener('message', (event) => {
+            console.log('Message from iframe:', event.data);
+        });
+
+        // Log when iframes load
+        document.querySelectorAll('iframe').forEach((iframe, index) => {
+            iframe.addEventListener('load', () => {
+                console.log(`User ${index + 1} iframe loaded`);
+            });
+        });
+    </script>
+</body>
+</html>
